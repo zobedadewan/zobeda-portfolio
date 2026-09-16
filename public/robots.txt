@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zobedadewan.vercel.app/sitemap.xml

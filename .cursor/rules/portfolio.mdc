@@ -1,0 +1,86 @@
+---
+description: Design system and content rules for the portfolio. Always apply.
+alwaysApply: true
+---
+
+# Portfolio conventions
+
+This is Zobeda Dewan's personal portfolio: React 19 + TypeScript + Tailwind v4
++ Vite, deployed on Vercel. It is a hiring artifact — a recruiter reading it is
+also judging the code, so the site must practise what it claims.
+
+## Content rules — these are not style preferences
+
+1. **Never invent statistics, metrics, testimonials, client names or logos.**
+   Every number on this site traces to the resume. If a design calls for social
+   proof that does not exist ("50+ projects", "99% satisfaction", a quote from a
+   named person), leave it out and say so. Do not fill it with plausible copy.
+2. **All user-facing copy lives in `src/data/`.** Never hardcode prose in a
+   component. Sections read from `profile.ts`, `experience.ts`, `skills.ts`,
+   `process.ts`, `projects.ts`.
+3. **No contact form.** A form needs a backend and fails silently. Use `mailto:`.
+4. **No phone number on the page.** It stays in the PDF resume only.
+
+## Design system
+
+Tokens are defined in `src/index.css` under `@theme`. Use the Tailwind classes
+they generate (`text-ink`, `bg-blush`, `border-petal`) — never a raw hex value
+and never a default Tailwind palette colour (`purple-600`, `pink-500`, …).
+
+| Token | Role |
+|---|---|
+| `cream` | page background |
+| `blush` | alternating section bands, card fills |
+| `petal` | borders, dividers, chip fills |
+| `ink` / `ink-soft` | headings / body copy |
+| `rose` / `rose-deep` | action colour / hover and tinted-ground text |
+| `plum` | depth, timeline spine, secondary |
+| `gold` / `gold-deep` | decorative accents / small accent text |
+
+**Contrast rules, already measured — do not break them:**
+
+- Text on `blush` or `petal` uses `rose-deep`, never `rose` (rose is 4.35:1 on
+  blush, which fails AA for body text).
+- `gold` never carries small text — it is 3.8:1 on cream. Eyebrow labels and
+  any text under 18px use `gold-deep`. `gold` is for rules, borders and large
+  numerals.
+- White on the `gradient-brand` (rose→plum) is fine: 4.95:1 at its weakest.
+- **Never apply an opacity modifier to a text colour** (`text-ink-soft/80`,
+  `text-gold opacity-60`). The ratios above assume full strength, and fading
+  a token silently drops it below AA. Both contrast bugs found in this
+  codebase were exactly this. Fade backgrounds and borders, never text.
+
+**Typography:** `font-display` (Fraunces) for h1–h3 and the wordmark;
+`font-sans` (Plus Jakarta Sans) for body; `font-mono` (JetBrains Mono) for
+eyebrow labels, numerals and tech chips. The mono is the site's "IT-focused"
+signal — keep using it. No script or handwritten fonts.
+
+**Custom utilities:** `gradient-brand`, `text-gradient`, `eyebrow`. The brand
+gradient appears only on the wordmark, primary buttons, section numerals and
+timeline nodes — keeping it scarce is what makes it read as a signature.
+
+## Layout restraint
+
+- **One decorative element per section, maximum.** A corner bloom *or* a rule
+  *or* a floating chip — not all three.
+- **Prefer a two-column split** over any layout that spreads content across
+  three zones.
+- When asked to "simplify", change the *arrangement* — do not delete copy.
+  If cutting content seems warranted, ask first.
+
+## Accessibility — non-negotiable, it is a claim the site makes
+
+- One `<h1>` per page; headings in order.
+- Every image has real `alt`; every icon-only link has `aria-label`; decorative
+  SVGs get `aria-hidden="true"`.
+- All motion is gated on `prefers-reduced-motion` via
+  `usePrefersReducedMotion`. Scroll reveals go through `<Reveal>`, which has a
+  2s failsafe so content can never stay invisible.
+- Focus is visible everywhere (global `:focus-visible` in `index.css`).
+- The mobile menu traps Tab, closes on Escape, and restores focus.
+
+## Adding a project
+
+Append one entry to the `projects` array in `src/data/projects.ts` and drop
+images in `public/projects/<slug>/`. The home-page grid, the `/work/<slug>`
+route and `sitemap.xml` all derive from it. Nothing else needs editing.
