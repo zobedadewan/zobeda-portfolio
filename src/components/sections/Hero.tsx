@@ -1,6 +1,5 @@
 import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
 
-import { ArchFrame } from '@/components/ui/ArchFrame'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/BrandIcons'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
@@ -84,20 +83,22 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Capped at 21rem: keeps the 726px source comfortably above the
-              displayed size even on a 2x screen. */}
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-68 sm:max-w-xs lg:mx-0 lg:ml-auto lg:max-w-84">
-            <ArchFrame
-              src="/zobeda.jpg"
+          {/* No frame: the portrait is cut out of its original background and
+              floats directly on the page, dissolving at the shoulders. The
+              gold bloom above is the only thing behind it. */}
+          <Reveal delay={0.12} className="relative mx-auto w-full max-w-72 sm:max-w-xs lg:mx-0 lg:ml-auto lg:max-w-88">
+            <img
+              src="/zobeda.webp"
               alt="Zobeda Dewan, frontend developer"
-              width={726}
-              height={908}
-              monogram="Z"
-              priority
-              className="aspect-[4/5] w-full shadow-xl shadow-plum/10"
+              width={742}
+              height={844}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              className="w-full"
             />
 
-            <p className="absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-petal bg-cream/95 px-5 py-2.5 font-mono text-[0.68rem] tracking-[0.1em] whitespace-nowrap text-ink-soft shadow-lg shadow-plum/5 backdrop-blur-sm">
+            <p className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full border border-petal bg-cream/95 px-5 py-2.5 font-mono text-[0.68rem] tracking-[0.1em] whitespace-nowrap text-ink-soft shadow-lg shadow-plum/5 backdrop-blur-sm">
               React · TypeScript · Tailwind
             </p>
           </Reveal>
