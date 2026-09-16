@@ -86,12 +86,15 @@ export function Hero() {
           {/* Solid rose panel with the cut-out portrait breaking past its
               right and bottom edges — the panel is inset from those two
               sides so she overlaps onto the page itself. */}
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-104">
-            {/* Bottom edges line up, so where the photograph ends reads as
-                the panel clipping her rather than as a cut-off sticker. */}
+          {/* The top padding is what sets her down inside the panel, so a
+              band of pink reads above and around her as in the reference,
+              instead of her head jamming against the top edge. */}
+          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm pt-[18%] lg:mx-0 lg:ml-auto lg:max-w-108">
+            {/* Panel spans the full wrapper; bottom edges line up so where
+                the photograph ends reads as the panel clipping her. */}
             <div
               aria-hidden="true"
-              className="absolute top-[3%] right-[13%] bottom-0 left-0 rounded-[3.5rem] bg-rose-panel sm:rounded-[4.5rem]"
+              className="absolute inset-y-0 right-[14%] left-0 rounded-[3.5rem] bg-rose-panel sm:rounded-[4.5rem]"
             />
 
             <img
@@ -105,7 +108,7 @@ export function Hero() {
               /* Inset from the left so the shoulder the original photo
                  clipped lands on pink and reads as the panel cropping her,
                  rather than poking past its rounded corner onto the page. */
-              className="relative ml-auto w-[88%]"
+              className="relative ml-auto w-[82%]"
             />
 
             {/* Palette swatches, echoing the reference. The site's own
