@@ -84,14 +84,14 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Capped at 26rem so the 552px-wide source is never scaled up
-              much past its intrinsic size. */}
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-[26rem]">
+          {/* Capped at 21rem: keeps the 726px source comfortably above the
+              displayed size even on a 2x screen. */}
+          <Reveal delay={0.12} className="relative mx-auto w-full max-w-68 sm:max-w-xs lg:mx-0 lg:ml-auto lg:max-w-84">
             <ArchFrame
               src="/zobeda.jpg"
               alt="Zobeda Dewan, frontend developer"
-              width={552}
-              height={690}
+              width={726}
+              height={908}
               monogram="Z"
               priority
               className="aspect-[4/5] w-full shadow-xl shadow-plum/10"
