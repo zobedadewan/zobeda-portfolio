@@ -84,14 +84,17 @@ export function Hero() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:max-w-none">
+          {/* Capped at 26rem so the 552px-wide source is never scaled up
+              much past its intrinsic size. */}
+          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-[26rem]">
             <ArchFrame
+              src="/zobeda.jpg"
+              alt="Zobeda Dewan, frontend developer"
+              width={552}
+              height={690}
               monogram="Z"
               priority
               className="aspect-[4/5] w-full shadow-xl shadow-plum/10"
-              /* When the photo arrives, add:
-                 src="/zobeda.webp"
-                 alt="Zobeda Dewan, frontend developer" */
             />
 
             <p className="absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-petal bg-cream/95 px-5 py-2.5 font-mono text-[0.68rem] tracking-[0.1em] whitespace-nowrap text-ink-soft shadow-lg shadow-plum/5 backdrop-blur-sm">

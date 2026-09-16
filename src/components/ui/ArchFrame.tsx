@@ -12,6 +12,8 @@ import { cn } from '@/lib/cn'
 export function ArchFrame({
   src,
   alt,
+  width,
+  height,
   monogram,
   className,
   priority = false,
@@ -19,6 +21,10 @@ export function ArchFrame({
   src?: string
   /** Required whenever `src` is set. Ignored by the placeholder, which is decorative. */
   alt?: string
+  /** Intrinsic pixel size. Set alongside `src` so the frame reserves its
+      space before the image loads and nothing shifts. */
+  width?: number
+  height?: number
   monogram: string
   className?: string
   /** Set on the hero image so it is not lazy-loaded. */
@@ -37,6 +43,8 @@ export function ArchFrame({
         <img
           src={src}
           alt={alt ?? ''}
+          width={width}
+          height={height}
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"
           fetchPriority={priority ? 'high' : 'auto'}
