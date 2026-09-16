@@ -86,7 +86,7 @@ export function Hero() {
           {/* No frame: the portrait is cut out of its original background and
               floats directly on the page, dissolving at the shoulders. The
               gold bloom above is the only thing behind it. */}
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-72 sm:max-w-xs lg:mx-0 lg:ml-auto lg:max-w-88">
+          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-104">
             <img
               src="/zobeda.webp"
               alt="Zobeda Dewan, frontend developer"
