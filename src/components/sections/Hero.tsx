@@ -83,22 +83,43 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* No frame: the portrait is cut out of its original background and
-              floats directly on the page, dissolving at the shoulders. The
-              gold bloom above is the only thing behind it. */}
+          {/* Solid rose panel with the cut-out portrait breaking past its
+              right and bottom edges — the panel is inset from those two
+              sides so she overlaps onto the page itself. */}
           <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-104">
+            {/* Bottom edges line up, so where the photograph ends reads as
+                the panel clipping her rather than as a cut-off sticker. */}
+            <div
+              aria-hidden="true"
+              className="absolute top-[3%] right-[13%] bottom-0 left-0 rounded-[3.5rem] bg-rose-panel sm:rounded-[4.5rem]"
+            />
+
             <img
               src="/zobeda.webp"
               alt="Zobeda Dewan, frontend developer"
               width={742}
-              height={844}
+              height={840}
               loading="eager"
               decoding="async"
               fetchPriority="high"
-              className="w-full"
+              /* Inset from the left so the shoulder the original photo
+                 clipped lands on pink and reads as the panel cropping her,
+                 rather than poking past its rounded corner onto the page. */
+              className="relative ml-auto w-[88%]"
             />
 
-            <p className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full border border-petal bg-cream/95 px-5 py-2.5 font-mono text-[0.68rem] tracking-[0.1em] whitespace-nowrap text-ink-soft shadow-lg shadow-plum/5 backdrop-blur-sm">
+            {/* Palette swatches, echoing the reference. The site's own
+                three brand colours, not decoration for its own sake. */}
+            <ul
+              aria-hidden="true"
+              className="absolute top-1/2 -right-1 hidden -translate-y-1/2 flex-col gap-3 lg:flex"
+            >
+              <li className="size-5 rounded-full bg-petal" />
+              <li className="size-5 rounded-full bg-rose" />
+              <li className="size-5 rounded-full bg-plum" />
+            </ul>
+
+            <p className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-petal bg-cream/95 px-5 py-2.5 font-mono text-[0.68rem] tracking-[0.1em] whitespace-nowrap text-ink-soft shadow-lg shadow-plum/5 backdrop-blur-sm">
               React · TypeScript · Tailwind
             </p>
           </Reveal>
