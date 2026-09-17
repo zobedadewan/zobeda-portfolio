@@ -96,7 +96,10 @@ export function Hero() {
                 the photograph ends reads as the panel clipping her. */}
             <div
               aria-hidden="true"
-              className="absolute inset-y-0 right-[14%] left-0 rounded-[3.5rem] bg-rose-panel sm:rounded-[4.5rem]"
+              /* Uneven corner radii, as in the reference — a uniform
+                 rounded square read too mechanical. Clockwise from top
+                 left, the bottom-left stays tightest. */
+              className="absolute inset-y-0 right-[14%] left-0 rounded-[4rem_3rem_4.5rem_2rem] bg-rose-panel sm:rounded-[5.5rem_4rem_6rem_2.5rem]"
             />
 
             <img

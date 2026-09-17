@@ -34,12 +34,11 @@
   --color-cream: #fdf8f6;
   --color-blush: #faedf0;
   --color-petal: #f5dce4;
-  /* Solid panel behind the hero portrait — rose tinted 45% into cream, so
-     it is a true member of this palette rather than a borrowed pink.
-     Decorative only. If text ever lands on it: ink 7.67 and plum 5.06 pass
-     AA for body; ink-soft 3.21 and rose-deep 3.42 are large-text only;
-     white is 2.07 and fails outright. */
-  --color-rose-panel: #e5a1b9;
+  /* Solid panel behind the hero portrait. A warm dusty salmon rather than
+     a tint of the brand rose — the magenta tint read too pink next to the
+     cream ground. Decorative only. If text ever lands on it: ink 7.55 and
+     plum 4.99 pass AA for body; white fails outright at 2.0. */
+  --color-rose-panel: #e1a3a4;
   --color-ink: #2e1b33;
   --color-ink-soft: #6b5570;
   --color-rose: #c9366f;
