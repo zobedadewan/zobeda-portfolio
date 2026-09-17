@@ -28,7 +28,7 @@ export function Contact() {
         </svg>
       </div>
 
-      <div className="bg-blush pt-6 pb-24 lg:pb-32">
+      <div className="bg-blush pt-6 pb-16 lg:pb-20">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-20">
             <Reveal>

@@ -96,7 +96,7 @@ export function Work() {
   const featured = featuredProjects()
 
   return (
-    <section id="work" className="scroll-mt-24 bg-blush/45 py-24 lg:py-32">
+    <section id="work" className="scroll-mt-24 bg-blush/45 py-16 lg:py-20">
       <Container>
         <SectionHeader
           eyebrow="Selected Work"

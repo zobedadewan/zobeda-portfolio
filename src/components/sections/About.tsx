@@ -7,7 +7,7 @@ import { icons } from '@/lib/icons'
 
 export function About() {
   return (
-    <section id="about" className="scroll-mt-24 py-24 lg:py-32">
+    <section id="about" className="scroll-mt-24 py-16 lg:py-20">
       <Container>
         {/* items-start, not items-center: the text column is much taller, so
             centring dropped the photo well below the section heading. */}

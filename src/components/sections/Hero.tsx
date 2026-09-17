@@ -17,7 +17,7 @@ export function Hero() {
   // padding has to clear it before any gap is left. 120px leaves 40px of
   // breathing room on desktop, down from 80px.
   return (
-    <section id="home" className="relative overflow-hidden pt-28 pb-20 lg:pt-30 lg:pb-28">
+    <section id="home" className="relative overflow-hidden pt-28 pb-16 lg:pt-30 lg:pb-20">
       {/* The section's one decorative element: a soft gold bloom behind the
           portrait. Nothing else competes with it here. */}
       <div
@@ -86,12 +86,9 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Solid rose panel with the cut-out portrait breaking past its
-              right and bottom edges — the panel is inset from those two
-              sides so she overlaps onto the page itself. */}
-          {/* The photograph's own warm setting carries the image now — no
-              panel behind it. Uneven corner radii keep the shape from
-              reading as a plain rectangle. */}
+          {/* The photograph's own warm setting carries the image — no panel
+              behind it. Uneven corner radii keep the shape from reading as
+              a plain rectangle. */}
           <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-104">
             <img
               src="/zobeda.webp"

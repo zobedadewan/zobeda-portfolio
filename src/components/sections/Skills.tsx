@@ -7,7 +7,7 @@ import { icons } from '@/lib/icons'
 
 export function Skills() {
   return (
-    <section id="skills" className="scroll-mt-24 py-24 lg:py-32">
+    <section id="skills" className="scroll-mt-24 py-16 lg:py-20">
       <Container>
         <SectionHeader
           eyebrow="Technical Toolkit"

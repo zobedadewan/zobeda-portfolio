@@ -5,7 +5,7 @@ import { processSteps } from '@/data/process'
 
 export function Process() {
   return (
-    <section className="bg-blush/45 py-24 lg:py-32">
+    <section className="bg-blush/45 py-16 lg:py-20">
       <Container>
         <SectionHeader
           eyebrow="How I Work"

@@ -8,7 +8,7 @@ import { education, experience } from '@/data/experience'
 
 export function Experience() {
   return (
-    <section id="experience" className="scroll-mt-24 py-24 lg:py-32">
+    <section id="experience" className="scroll-mt-24 py-16 lg:py-20">
       <Container>
         <SectionHeader
           eyebrow="Experience"

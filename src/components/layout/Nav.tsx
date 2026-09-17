@@ -86,10 +86,7 @@ export function Nav() {
         <nav aria-label="Primary" className="flex h-20 items-center justify-between gap-6">
           <a
             href="#home"
-            /* Set in caps. The positive tracking is deliberate: all-caps
-               serif needs letting out where the mixed-case tracking-tight
-               was right, or the letters crowd. */
-            className="flex items-baseline gap-1.5 font-display text-xl font-semibold tracking-[0.08em] text-ink uppercase"
+            className="flex items-baseline gap-1 font-display text-xl font-semibold tracking-normal text-ink uppercase"
           >
             {profile.shortName}
             <span aria-hidden="true" className="size-2 rounded-full gradient-brand" />
