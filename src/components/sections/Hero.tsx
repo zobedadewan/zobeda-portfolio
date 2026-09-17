@@ -86,12 +86,12 @@ export function Hero() {
           {/* Solid rose panel with the cut-out portrait breaking past its
               right and bottom edges — the panel is inset from those two
               sides so she overlaps onto the page itself. */}
-          {/* Proportions taken off the reference: its panel is a 4:5 block,
-              the subject's head sits ~10% down from the panel top and she
-              fills ~77% of its width. The top padding is 11% of the width,
-              which — against an image 86% wide and 1.13:1 tall — puts the
-              head at that 10% mark and makes the panel 0.80:1. */}
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm pt-[11%] lg:mx-0 lg:ml-auto lg:max-w-108">
+          {/* Proportions taken off the reference: its panel is roughly a 4:5
+              block with the subject's head ~10% down from the top, filling
+              most of it. Retuned for this portrait, which is 1.33:1 tall
+              rather than the 1.13:1 headshot it replaced — hence a narrower
+              image and a smaller right inset to keep the panel near 4:5. */}
+          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm pt-[12%] lg:mx-0 lg:ml-auto lg:max-w-108">
             {/* Panel spans the full wrapper; bottom edges line up so where
                 the photograph ends reads as the panel clipping her. */}
             <div
@@ -99,21 +99,18 @@ export function Hero() {
               /* Uneven corner radii, as in the reference — a uniform
                  rounded square read too mechanical. Clockwise from top
                  left, the bottom-left stays tightest. */
-              className="absolute inset-y-0 right-[14%] left-0 rounded-[4rem_3rem_4.5rem_2rem] bg-rose-panel sm:rounded-[5.5rem_4rem_6rem_2.5rem]"
+              className="absolute inset-y-0 right-[9%] left-0 rounded-[4rem_3rem_4.5rem_2rem] bg-rose-panel sm:rounded-[5.5rem_4rem_6rem_2.5rem]"
             />
 
             <img
               src="/zobeda.webp"
               alt="Zobeda Dewan, frontend developer"
-              width={742}
-              height={840}
+              width={1086}
+              height={1441}
               loading="eager"
               decoding="async"
               fetchPriority="high"
-              /* Inset from the left so the shoulder the original photo
-                 clipped lands on pink and reads as the panel cropping her,
-                 rather than poking past its rounded corner onto the page. */
-              className="relative ml-auto w-[86%]"
+              className="relative ml-auto w-[80%]"
             />
 
             {/* Palette swatches, echoing the reference. The site's own
