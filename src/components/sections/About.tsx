@@ -1,6 +1,5 @@
 import { ArrowRight } from 'lucide-react'
 
-import { ArchFrame } from '@/components/ui/ArchFrame'
 import { Container } from '@/components/ui/Container'
 import { Reveal } from '@/components/ui/Reveal'
 import { about, profile } from '@/data/profile'
@@ -11,12 +10,18 @@ export function About() {
     <section id="about" className="scroll-mt-24 py-24 lg:py-32">
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <Reveal className="relative mx-auto w-full max-w-md lg:mx-0">
-            <ArchFrame
-              monogram="&lt;/&gt;"
-              className="aspect-[5/6] w-full shadow-lg shadow-plum/10"
-              /* Optional workspace photo goes here:
-                 src="/workspace.webp" alt="..." */
+          <Reveal className="relative mx-auto w-full max-w-xl lg:mx-0">
+            {/* Shown at its native 3:2 rather than cropped to a portrait
+                slot — the monitors and desk are the point of the shot.
+                Leaf corners match the hero portrait. */}
+            <img
+              src="/workspace.webp"
+              alt="Zobeda Dewan at her desk, writing code on a dual-monitor setup"
+              width={1536}
+              height={1024}
+              loading="lazy"
+              decoding="async"
+              className="w-full rounded-[3rem_0.25rem_3rem_0.25rem] shadow-lg shadow-plum/10 sm:rounded-[4rem_0.25rem_4rem_0.25rem]"
             />
 
             {/* Circular years badge, carried over from the reference — with
