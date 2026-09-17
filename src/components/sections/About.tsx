@@ -12,7 +12,11 @@ export function About() {
         {/* items-start, not items-center: the text column is much taller, so
             centring dropped the photo well below the section heading. */}
         <div className="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
-          <Reveal className="relative mx-auto w-full max-w-xl lg:mx-0">
+          {/* The 34px offset drops the photo's top edge from the eyebrow to
+              the heading itself: the eyebrow's 18px line box plus the 16px
+              mt-4 above the h2. Only on lg, where the columns sit side by
+              side — below that the photo stacks above the text. */}
+          <Reveal className="relative mx-auto w-full max-w-xl lg:mx-0 lg:mt-8.5">
             {/* Shown at its native 3:2 rather than cropped to a portrait
                 slot — the monitors and desk are the point of the shot.
                 Leaf corners match the hero portrait. */}
