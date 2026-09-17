@@ -9,7 +9,9 @@ export function About() {
   return (
     <section id="about" className="scroll-mt-24 py-24 lg:py-32">
       <Container>
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        {/* items-start, not items-center: the text column is much taller, so
+            centring dropped the photo well below the section heading. */}
+        <div className="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal className="relative mx-auto w-full max-w-xl lg:mx-0">
             {/* Shown at its native 3:2 rather than cropped to a portrait
                 slot — the monitors and desk are the point of the shot.
