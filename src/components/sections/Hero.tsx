@@ -86,43 +86,22 @@ export function Hero() {
           {/* Solid rose panel with the cut-out portrait breaking past its
               right and bottom edges — the panel is inset from those two
               sides so she overlaps onto the page itself. */}
-          {/* Proportions taken off the reference: its panel is roughly a 4:5
-              block with the subject's head ~10% down from the top, filling
-              most of it. Retuned for this portrait, which is 1.33:1 tall
-              rather than the 1.13:1 headshot it replaced — hence a narrower
-              image and a smaller right inset to keep the panel near 4:5. */}
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm pt-[12%] lg:mx-0 lg:ml-auto lg:max-w-108">
-            {/* Panel spans the full wrapper; bottom edges line up so where
-                the photograph ends reads as the panel clipping her. */}
-            <div
-              aria-hidden="true"
-              /* Uneven corner radii, as in the reference — a uniform
-                 rounded square read too mechanical. Clockwise from top
-                 left, the bottom-left stays tightest. */
-              className="absolute inset-y-0 right-[9%] left-0 rounded-[4rem_3rem_4.5rem_2rem] bg-rose-panel sm:rounded-[5.5rem_4rem_6rem_2.5rem]"
-            />
-
+          {/* The photograph's own warm setting carries the image now — no
+              panel behind it. Uneven corner radii keep the shape from
+              reading as a plain rectangle. */}
+          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-104">
             <img
               src="/zobeda.webp"
               alt="Zobeda Dewan, frontend developer"
               width={1086}
-              height={1441}
+              height={1448}
               loading="eager"
               decoding="async"
               fetchPriority="high"
-              className="relative ml-auto w-[80%]"
+              /* Leaf shape: top-left and bottom-right rounded, the other two
+                 corners near-square. Order is tl / tr / br / bl. */
+              className="relative w-full rounded-[4rem_0.25rem_4rem_0.25rem] shadow-xl shadow-plum/10 sm:rounded-[6rem_0.25rem_6rem_0.25rem]"
             />
-
-            {/* Palette swatches, echoing the reference. The site's own
-                three brand colours, not decoration for its own sake. */}
-            <ul
-              aria-hidden="true"
-              className="absolute top-1/2 -right-1 hidden -translate-y-1/2 flex-col gap-3 lg:flex"
-            >
-              <li className="size-5 rounded-full bg-petal" />
-              <li className="size-5 rounded-full bg-rose" />
-              <li className="size-5 rounded-full bg-plum" />
-            </ul>
 
             <p className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-petal bg-cream/95 px-5 py-2.5 font-mono text-[0.68rem] tracking-[0.1em] whitespace-nowrap text-ink-soft shadow-lg shadow-plum/5 backdrop-blur-sm">
               React · TypeScript · Tailwind
