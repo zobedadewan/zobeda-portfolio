@@ -13,8 +13,11 @@ const socials = [
 ]
 
 export function Hero() {
+  // The fixed nav is 80px tall and sits over this section, so the top
+  // padding has to clear it before any gap is left. 120px leaves 40px of
+  // breathing room on desktop, down from 80px.
   return (
-    <section id="home" className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <section id="home" className="relative overflow-hidden pt-28 pb-20 lg:pt-30 lg:pb-28">
       {/* The section's one decorative element: a soft gold bloom behind the
           portrait. Nothing else competes with it here. */}
       <div
