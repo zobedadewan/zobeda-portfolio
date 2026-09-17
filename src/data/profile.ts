@@ -7,7 +7,7 @@
 export const profile = {
   name: 'Zobeda Dewan',
   /** Used for the nav wordmark. */
-  shortName: 'zobeda',
+  shortName: 'Zobeda',
   title: 'Frontend Developer',
   location: 'Ontario, Canada',
   availability: 'Open to frontend roles — Ontario / Remote',
