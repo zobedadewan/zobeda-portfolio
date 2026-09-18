@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn'
 
 /**
  * Mono eyebrow + display heading. The eyebrow uses gold-deep rather than
- * gold: at 12px it is small text and needs 4.5:1, which gold does not meet.
+ * gold: it is small text and needs 4.5:1, which gold does not meet.
  */
 export function SectionHeader({
   eyebrow,
@@ -44,9 +44,7 @@ export function SectionHeader({
           {accent && <em className="text-gradient">{accent}</em>}
         </h2>
 
-        {description && (
-          <p className="mt-4 text-base leading-relaxed text-ink-soft">{description}</p>
-        )}
+        {description && <p className="copy mt-4 text-ink-soft">{description}</p>}
       </Reveal>
 
       {action && <Reveal delay={0.1} className="shrink-0">{action}</Reveal>}

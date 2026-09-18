@@ -8,7 +8,7 @@ export type Role = {
   role: string
   location: string
   period: string
-  /** Drives the collapsed-by-default treatment on small screens. */
+  /** Recent roles get the full card treatment; earlier ones are condensed. */
   recent: boolean
   highlights: string[]
   tech: string[]

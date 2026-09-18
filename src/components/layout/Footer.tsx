@@ -16,10 +16,10 @@ export function Footer() {
       <Container>
         <div className="flex flex-col items-center gap-6 py-10 sm:flex-row sm:justify-between">
           <div className="text-center sm:text-left">
-            <p className="text-sm text-ink-soft">
+            <p className="text-[0.82rem] font-medium text-ink-soft">
               © {new Date().getFullYear()} {profile.name}
             </p>
-            <p className="mt-1 font-mono text-[0.62rem] tracking-[0.1em] text-ink-soft">
+            <p className="mt-1 font-mono text-[0.6rem] tracking-normal text-ink-soft">
               Built with React, TypeScript &amp; Tailwind CSS
             </p>
           </div>
@@ -33,7 +33,7 @@ export function Footer() {
                   {...(href.startsWith('http')
                     ? { target: '_blank', rel: 'noreferrer noopener' }
                     : {})}
-                  className="grid size-10 place-items-center rounded-full border border-petal bg-cream/60 text-ink-soft transition-colors hover:border-rose hover:text-rose-deep"
+                  className="grid size-10 place-items-center rounded-full border border-gold/25 bg-gold/8 text-ink transition-colors hover:border-gold/40 hover:bg-gold/15 hover:text-gold-deep"
                 >
                   <Icon size={17} aria-hidden="true" />
                 </a>

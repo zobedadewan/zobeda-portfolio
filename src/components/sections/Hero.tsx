@@ -1,31 +1,31 @@
-import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Mail } from "lucide-react";
 
-import { GithubIcon, LinkedinIcon } from '@/components/ui/BrandIcons'
-import { Button } from '@/components/ui/Button'
-import { Container } from '@/components/ui/Container'
-import { Reveal } from '@/components/ui/Reveal'
-import { profile } from '@/data/profile'
+import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
+import { profile } from "@/data/profile";
 
 const socials = [
-  { href: profile.github, label: 'GitHub profile', Icon: GithubIcon },
-  { href: profile.linkedin, label: 'LinkedIn profile', Icon: LinkedinIcon },
-  { href: `mailto:${profile.email}`, label: 'Email Zobeda', Icon: Mail },
-]
+  { href: profile.github, label: "GitHub profile", Icon: GithubIcon },
+  { href: profile.linkedin, label: "LinkedIn profile", Icon: LinkedinIcon },
+  { href: `mailto:${profile.email}`, label: "Email Zobeda", Icon: Mail },
+];
 
 export function Hero() {
-  // The fixed nav is 80px tall and sits over this section, so the top
-  // padding has to clear it before any gap is left. 120px leaves 40px of
-  // breathing room on desktop, down from 80px.
   return (
-    <section id="home" className="relative overflow-hidden pt-28 pb-16 lg:pt-30 lg:pb-20">
-      {/* The section's one decorative element: a soft gold bloom behind the
-          portrait. Nothing else competes with it here. */}
+    <section
+      id="home"
+      /* Added bg-blush for the full hero background and extra bottom padding for the wave */
+      className="relative overflow-hidden bg-blush pt-28 pb-28 lg:pt-30 lg:pb-36"
+    >
+      {/* Decorative radial background bloom */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute top-[-12%] right-[-10%] size-[46rem] rounded-full bg-[radial-gradient(circle,var(--color-gold)_0%,transparent_62%)] opacity-[0.10]"
       />
 
-      <Container>
+      <Container className="relative z-10">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <Reveal>
@@ -34,7 +34,7 @@ export function Hero() {
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-gold opacity-70" />
                   <span className="relative inline-flex size-2 rounded-full bg-gold-deep" />
                 </span>
-                <span className="font-mono text-[0.6rem] tracking-[0.12em] text-ink-soft uppercase sm:text-[0.68rem] sm:tracking-[0.14em]">
+                <span className="font-mono text-[0.58rem] font-semibold tracking-widest text-ink uppercase sm:text-[0.62rem]">
                   {profile.availability}
                 </span>
               </p>
@@ -42,13 +42,13 @@ export function Hero() {
 
             <Reveal delay={0.08}>
               <h1 className="mt-7 text-display font-semibold text-ink">
-                {profile.headline.lead}{' '}
+                {profile.headline.lead}{" "}
                 <em className="text-gradient">{profile.headline.accent}</em>
               </h1>
             </Reveal>
 
             <Reveal delay={0.16}>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
+              <p className="mt-7 max-w-xl text-base leading-[1.7] text-ink-soft">
                 {profile.intro}
               </p>
             </Reveal>
@@ -73,10 +73,10 @@ export function Hero() {
                     <a
                       href={href}
                       aria-label={label}
-                      {...(href.startsWith('http')
-                        ? { target: '_blank', rel: 'noreferrer noopener' }
+                      {...(href.startsWith("http")
+                        ? { target: "_blank", rel: "noreferrer noopener" }
                         : {})}
-                      className="grid size-11 place-items-center rounded-full border border-petal text-ink-soft transition-all duration-200 hover:border-rose hover:text-rose-deep motion-safe:hover:-translate-y-0.5"
+                      className="grid size-11 place-items-center rounded-full border border-gold/25 bg-gold/8 text-ink transition-all duration-200 hover:border-gold/40 hover:bg-gold/15 hover:text-gold-deep motion-safe:hover:-translate-y-0.5"
                     >
                       <Icon size={18} aria-hidden="true" />
                     </a>
@@ -86,10 +86,10 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* The photograph's own warm setting carries the image — no panel
-              behind it. Uneven corner radii keep the shape from reading as
-              a plain rectangle. */}
-          <Reveal delay={0.12} className="relative mx-auto w-full max-w-sm lg:mx-0 lg:ml-auto lg:max-w-104">
+          <Reveal
+            delay={0.12}
+            className="relative mx-auto w-full max-w-84 lg:mx-0 lg:ml-auto lg:max-w-88"
+          >
             <img
               src="/zobeda.webp"
               alt="Zobeda Dewan, frontend developer"
@@ -98,17 +98,31 @@ export function Hero() {
               loading="eager"
               decoding="async"
               fetchPriority="high"
-              /* Leaf shape: top-left and bottom-right rounded, the other two
-                 corners near-square. Order is tl / tr / br / bl. */
-              className="relative w-full rounded-[4rem_0.25rem_4rem_0.25rem] shadow-xl shadow-plum/10 sm:rounded-[6rem_0.25rem_6rem_0.25rem]"
+              className="portrait-shadow relative w-full rounded-[4rem_0.25rem_4rem_0.25rem] sm:rounded-[6rem_0.25rem_6rem_0.25rem]"
             />
-
-            <p className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-petal bg-cream/95 px-5 py-2.5 font-mono text-[0.68rem] tracking-[0.1em] whitespace-nowrap text-ink-soft shadow-lg shadow-plum/5 backdrop-blur-sm">
+            <p className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full border border-petal bg-cream px-5 py-2.5 font-mono text-[0.62rem] font-medium tracking-[0.06em] whitespace-nowrap text-ink shadow-lg shadow-plum/5">
               React · TypeScript · Tailwind
             </p>
           </Reveal>
         </div>
       </Container>
+      {/* Hero Bottom Wave Divider with Visible Drop Shadow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 w-full overflow-visible leading-none"
+      >
+        <svg
+          viewBox="0 0 1440 90"
+          preserveAspectRatio="none"
+          /* Applied drop-shadow to the SVG path so it projects onto the section below */
+          className="block h-[60px] w-full text-cream sm:h-[90px] [filter:drop-shadow(0px_15px_12px_rgba(45,15,35,0.15))]"
+        >
+          <path
+            fill="currentColor"
+            d="M0 48c180-42 360-42 540-8s360 44 540 6 300-40 360-32V90H0Z"
+          />
+        </svg>
+      </div>
     </section>
-  )
+  );
 }

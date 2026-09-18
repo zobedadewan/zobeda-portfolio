@@ -12,7 +12,7 @@ export function NotFound() {
           This page <em className="text-gradient">wandered off.</em>
         </h1>
 
-        <p className="mx-auto mt-4 max-w-md leading-relaxed text-ink-soft">
+        <p className="copy mx-auto mt-4 max-w-md text-ink-soft">
           The link may be out of date, or the case study behind it hasn&rsquo;t been published yet.
         </p>
 

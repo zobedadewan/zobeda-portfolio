@@ -1,51 +1,61 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* Display serif — optical-size axis gives real weight at large sizes */
-@import '@fontsource-variable/fraunces/opsz.css';
-@import '@fontsource-variable/fraunces/opsz-italic.css';
+@import "@fontsource-variable/fraunces/opsz.css";
+@import "@fontsource-variable/fraunces/opsz-italic.css";
 /* Body / UI */
-@import '@fontsource-variable/plus-jakarta-sans/wght.css';
+@import "@fontsource-variable/plus-jakarta-sans/wght.css";
 /* Mono — eyebrows, numerals, tech chips */
-@import '@fontsource-variable/jetbrains-mono/wght.css';
+@import "@fontsource-variable/jetbrains-mono/wght.css";
 
 @theme {
   /* ---- Palette -------------------------------------------------------
-     Warm blush ground, deep plum ink (never pure black), rose for action,
-     plum for depth, gold as a sparing metallic highlight.
+     Gold into pink into plum. Rose is no longer the headline colour — the
+     gradients now open on gold — but it stays as the middle of that ramp
+     and as the small decorative accent, so the palette reads warm rather
+     than purely metallic.
+
+     The two text tones — ink-soft and gold-deep — were deliberately
+     re-darkened past the AA minimum. They sit on very light warm grounds,
+     where a merely-passing 5:1 still reads washed out; everything that
+     carries a sentence now measures 7:1 or better, which is AAA for body
+     text and is what makes the paragraphs read crisp rather than faint.
 
      Measured contrast (WCAG 2.1) against the three grounds:
 
                    cream   blush   petal
        ink         15.09   13.96   12.30   body text anywhere
-       ink-soft     6.31    5.84    5.14   body text anywhere
+       ink-soft    10.40    9.62    8.48   body text anywhere (AAA)
        plum         9.96    9.21    8.12   body text anywhere
+       gold-deep    7.12    6.58    5.80   body text anywhere
        rose-deep    6.74    6.23    5.49   body text anywhere
        rose         4.70    4.35    3.83   body text on CREAM ONLY
-       gold-deep    5.09    4.71    4.15   small text on cream/blush
-       gold         3.84    3.56    3.13   NON-TEXT + large text only
+       gold         3.84    3.56    3.13   NON-TEXT only
 
      Rules this forces, and they are not optional:
-       - Text on a tinted ground (blush/petal) uses rose-deep, never rose.
-       - --color-gold never carries small text. Eyebrow labels, which are
-         12px, use gold-deep. Gold is for rules, borders, large numerals
-         and decorative fills.
-     White on rose is 4.95, on rose-deep 7.10, on plum 10.49 — so white
-     text over the rose→plum gradient passes AA at its weakest point. */
+       - --color-gold and --color-rose never carry text. Eyebrows, links,
+         active states and the step numerals use gold-deep or rose-deep.
+         Gold and rose are for rules, borders, bullets, icons and
+         decorative fills.
+     White on gold-deep is 7.50, on rose 4.95, on plum 10.49 — so white
+     over the rose→plum gradient clears AA at every stop, even for a 14px
+     button label. */
   --color-cream: #fdf8f6;
   --color-blush: #faedf0;
   --color-petal: #f5dce4;
   --color-ink: #2e1b33;
-  --color-ink-soft: #6b5570;
+  --color-ink-soft: #4a3550;
   --color-rose: #c9366f;
   --color-rose-deep: #a32557;
   --color-plum: #5b2a6e;
   --color-gold: #a4761a;
-  --color-gold-deep: #8a6414;
+  --color-gold-deep: #6f4f0f;
 
   /* ---- Type ---------------------------------------------------------- */
-  --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', monospace;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
 
   /* Fluid display sizes — no media queries needed */
   /* Capped at 4.5rem so the hero headline sets as three balanced lines
@@ -63,41 +73,200 @@
 
 /* Utilities the design system leans on repeatedly. ------------------- */
 
-/* The signature gradient. Used on the wordmark, section numerals and
-   primary buttons only — keeping it scarce is what makes it a signature. */
+/* The signature gradient. Used on the wordmark dot, timeline nodes and
+   primary buttons only — keeping it scarce is what makes it a signature.
+   Runs rose → plum, never gold: button labels are 14px semibold, which is
+   not "large text", so they need 4.5:1 against white. Rose gives 4.95 and
+   plum 10.49; plain gold would give 4.05 and fail. */
 @utility gradient-brand {
   background-image: linear-gradient(
     135deg,
-    var(--color-rose) 0%,
+    var(--color-rose) 12%,
     var(--color-plum) 100%
   );
 }
 
+/* Display headings: gold into rose into plum.
+   Rose is doing real work as the middle stop. Interpolating gold straight
+   to plum passes through a muddy brown, because the two sit on opposite
+   sides of the wheel; routing through rose follows the hue circle instead,
+   so the ramp stays clean and keeps some pink in the palette.
+
+   The ramp runs on the DEEP ends of gold and rose. background-clip: text
+   disables subpixel rendering, so gradient text already renders lighter
+   than flat text at the same colour — starting at plain gold (3.84 on
+   cream) made the first word of every accent phrase the faintest thing on
+   the page. gold-deep → rose-deep → plum bottoms out at 5.49 on the
+   darkest ground, so the accent now reads as emphasis rather than as a
+   fade. */
 @utility text-gradient {
   background-image: linear-gradient(
     115deg,
-    var(--color-rose) 10%,
-    var(--color-plum) 90%
+    var(--color-gold-deep) 0%,
+    var(--color-rose-deep) 50%,
+    var(--color-plum) 100%
   );
   background-clip: text;
   color: transparent;
 }
 
-/* Mono eyebrow label above each section heading. */
+/* Mono eyebrow label above each section heading.
+   Tighter than it was (0.18em): mono uppercase at this size with that
+   much tracking dissolves into separate letters instead of reading as a
+   word. 0.13em holds it together. */
 @utility eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--color-gold-deep);
+}
+
+/* The two body-copy steps. Every paragraph in a section uses one of them,
+   so the reading sizes are set in one place instead of being re-guessed
+   per component. Both run looser leading than Tailwind's `leading-relaxed`
+   at these sizes, which is what stops the long About/Contact paragraphs
+   from packing together. */
+@utility copy {
+  font-size: 0.9375rem; /* 15px — section intros, About, Contact, detail body */
+  line-height: 1.65;
+}
+
+@utility copy-sm {
+  font-size: 0.8125rem; /* 13px — card and list copy */
+  line-height: 1.6;
+}
+
+/* Warm card ground: a champagne corner falling away to off-white.
+
+   Every stop is gold mixed down into cream rather than gold itself — the
+   token is a mid-tone meant for rules and icons, and at full strength it
+   would be a brown card. 9% lands on a faint champagne, 3% on
+   barely-there, which keeps the fade gradual instead of dropping to white
+   a third of the way across.
+
+   Darkest point of the card is that 9% stop, #f5ece2. Measured against
+   it: ink 13.61, ink-soft 9.39, plum 8.98, gold-deep 6.42, rose-deep 6.08
+   — every one above the blush column in the table at the top of this file,
+   so nothing on this ground needs re-measuring.
+
+   The border rides along here rather than being set at the call site,
+   because border-petal — the site default — is pink, and this card has no
+   pink left in it.
+
+   background-color is set first as the fallback — color-mix is well
+   supported, but a card with no ground at all is a bad way to find out. */
+@utility card-warm {
+  background-color: var(--color-cream);
+  background-image: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--color-gold) 9%, var(--color-cream)) 0%,
+    color-mix(in srgb, var(--color-gold) 3%, var(--color-cream)) 55%,
+    var(--color-cream) 100%
+  );
+  border-color: color-mix(in srgb, var(--color-gold) 14%, var(--color-cream));
+}
+
+/* Portrait shadow — the hero photo and the About photo.
+
+   Gold down the sides and under, almost nothing above.
+
+   Every layer is pushed down the y axis and pulled back with a NEGATIVE
+   spread. That combination is what clears the top edge: the offset moves
+   the shadow down, and the negative spread shrinks it before the blur
+   expands it again, so what would have bled upward past the top of the
+   image never gets there. A 0 0 layer — which is what this was while the
+   halo went all the way round — lights the top as much as the bottom, and
+   no amount of lowering the alpha changes where it sits.
+
+   Gold carries the underside at 34% and 24%. Those numbers are high for a
+   halo on purpose: gold is the most muted hue in the palette and needs the
+   opacity to land as a colour rather than a warm grey. Cream was tried
+   here early on and abandoned — it is only a shade lighter than the blush
+   ground, so at 70% it was still invisible.
+
+   The third gold layer exists because spread is isotropic. Pulling the
+   wide layer in to -14px to clear the top took the same 14px off the left
+   and right, since only the OFFSET is directional. So the left gets its
+   own layer — but a quiet one: 16% alpha, pulled in to -14px with a -10px
+   spread, which leaves ~21px of reach and, more importantly, stops 4px
+   BELOW the top edge. At its earlier settings this single layer was the
+   main thing lighting the top of the frame, spilling 7px above it.
+
+   The rose layer carries a -4px spread for the same reason: at 0 spread
+   its blur crept 2px over the top edge. Only the tight gold layer touches
+   the top now, and that one lands exactly on it.
+
+   One rose layer, down and to the right only. It is offset further than
+   the dark shadow (20/24 against 12/20) with a wider blur, which is what
+   keeps it readable: underneath the dark layer it would just tint it a
+   warmer brown, so instead it reaches past it.
+
+   The dark shadow sits last and lowest. It is what actually grounds the
+   portrait — without it the image floats inside its own glow. */
+@utility portrait-shadow {
+  box-shadow:
+    0 8px 24px -4px color-mix(in srgb, var(--color-gold) 34%, transparent),
+    0 20px 60px -14px color-mix(in srgb, var(--color-gold) 24%, transparent),
+    -14px 12px 34px -10px color-mix(in srgb, var(--color-gold) 16%, transparent),
+    20px 24px 52px -4px color-mix(in srgb, var(--color-rose) 20%, transparent),
+    12px 20px 35px rgba(45, 15, 35, 0.18);
+}
+
+/* Card elevation: shadow to the RIGHT and BELOW only, nothing above or to
+   the left. Four layers, since one blurred shape at this size reads as a
+   smudge rather than as depth.
+
+   Every layer is offset down AND right, then pulled back with a negative
+   spread. A shadow's top edge sits at (offset-y − spread − blur/2) and its
+   left edge at (offset-x − spread − blur/2), so a layer only clears both
+   of those sides when each offset plus the negative spread out-runs half
+   the blur. Checked against that, the nearest layer stops 0.5px inside
+   each edge and the farthest 18px below / 2px right.
+
+   This is why the numbers look lopsided: the x offset has to grow in step
+   with the blur, or a wide soft layer leaks back over the left edge even
+   though it was aimed right.
+
+   Neutral black, not a tinted one. A plum-tinted shadow was tried here and
+   read as a purple-pink bloom under every card rather than as depth — on
+   grounds this light the tint is a larger share of the result than it
+   would be on white. Alphas sit a little under the tinted version's,
+   because black carries further at the same opacity. */
+@utility card-lift {
+  box-shadow:
+    2px 2px 3px rgba(0, 0, 0, 0.07),
+    6px 8px 18px -4px rgba(0, 0, 0, 0.16),
+    12px 26px 48px -16px rgba(0, 0, 0, 0.3),
+    24px 14px 40px -12px rgba(0, 0, 0, 0.17);
+}
+
+/* Hover/raised state. Same shape, scaled up, still clear of the top and
+   left edges. Pair with `transition-[transform,box-shadow]`. */
+@utility card-lift-raised {
+  box-shadow:
+    3px 3px 5px rgba(0, 0, 0, 0.09),
+    8px 12px 24px -6px rgba(0, 0, 0, 0.2),
+    16px 38px 64px -20px rgba(0, 0, 0, 0.38),
+    30px 18px 50px -14px rgba(0, 0, 0, 0.22);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Offset anchor targets so the fixed nav doesn't cover section headings */
-    scroll-padding-top: 6rem;
+    /* Offset anchor targets so the fixed nav doesn't cover section
+       headings. This is the ONLY place that offset is set — the sections
+       used to carry scroll-mt-24 as well, and the two do not override each
+       other: the spec lands the target at (scroll-padding-top +
+       scroll-margin-top), so 6rem + 6rem put every section 192px down and
+       left 112px of the PREVIOUS section showing under the 80px nav.
+
+       5rem is the nav's own height (h-20), so a section's top edge lands
+       exactly on the nav's bottom edge. The section's own py-16 then
+       supplies the breathing room above its heading. If the nav height
+       changes, change this with it. */
+    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -105,8 +274,17 @@
     background-color: var(--color-cream);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    /* Plus Jakarta Sans carries a wght axis, so 450 is a real instance
+       rather than a synthesised bold. At 400 the stems are thin enough on
+       these pale grounds that the copy reads grey; 450 puts weight back
+       without tipping into medium. font-synthesis-weight: none keeps the
+       browser from faking anything if the variable file fails to load. */
+    font-weight: 450;
     font-synthesis-weight: none;
-    -webkit-font-smoothing: antialiased;
+    /* Deliberately NOT antialiased. -webkit-font-smoothing: antialiased
+       strips macOS subpixel rendering and thins every glyph — on dark text
+       over near-white it is the single biggest cause of "washed out" body
+       copy. Default rendering keeps the stems solid. */
   }
 
   h1,

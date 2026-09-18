@@ -13,7 +13,7 @@ const details = [
 
 export function Contact() {
   return (
-    <section id="contact" className="scroll-mt-24">
+    <section id="contact">
       {/* Wave divider into the tinted band — carried over from the reference. */}
       <div aria-hidden="true" className="-mb-px">
         <svg
@@ -41,7 +41,7 @@ export function Contact() {
                 {contact.heading.lead} <em className="text-gradient">{contact.heading.accent}</em>
               </h2>
 
-              <p className="mt-5 max-w-lg leading-relaxed text-ink-soft">{contact.body}</p>
+              <p className="copy mt-5 max-w-lg text-ink-soft">{contact.body}</p>
 
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <Button href={`mailto:${profile.email}`}>
@@ -56,29 +56,32 @@ export function Contact() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <ul className="space-y-1 rounded-3xl border border-petal bg-cream p-3">
+              <ul className="card-lift space-y-1 rounded-3xl border border-petal bg-cream p-3">
                 {details.map(({ Icon, label, value, href }) => (
                   <li key={label}>
-                    {/* Text on the cream card, so rose-deep is not required
+                    {/* Text on the cream card, so the deeper accent is not required
                         here — but it costs nothing and reads better. */}
                     <div className="flex items-center gap-4 rounded-2xl px-5 py-4">
-                      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-blush text-rose-deep">
+                      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-blush text-gold-deep">
                         <Icon size={18} aria-hidden="true" />
                       </span>
 
                       <div className="min-w-0">
-                        <p className="font-mono text-[0.6rem] tracking-[0.16em] text-ink-soft uppercase">
+                        <p className="font-mono text-[0.56rem] font-bold tracking-widest text-ink-soft uppercase">
                           {label}
                         </p>
+                        {/* decoration-petal is nearly invisible against
+                            cream — the underline has to be readable as a
+                            link affordance, so it takes rose. */}
                         {href ? (
                           <a
                             href={href}
-                            className="block truncate text-sm font-medium text-ink underline decoration-petal underline-offset-4 transition-colors hover:text-rose-deep hover:decoration-rose"
+                            className="mt-0.5 block truncate text-[0.82rem] font-semibold text-ink underline decoration-rose/50 underline-offset-4 transition-colors hover:text-gold-deep hover:decoration-rose"
                           >
                             {value}
                           </a>
                         ) : (
-                          <p className="text-sm font-medium text-ink">{value}</p>
+                          <p className="mt-0.5 text-[0.82rem] font-semibold text-ink">{value}</p>
                         )}
                       </div>
                     </div>

@@ -1,13 +1,13 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from "lucide-react";
 
-import { Container } from '@/components/ui/Container'
-import { Reveal } from '@/components/ui/Reveal'
-import { about, profile } from '@/data/profile'
-import { icons } from '@/lib/icons'
+import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
+import { about, profile } from "@/data/profile";
+import { icons } from "@/lib/icons";
 
 export function About() {
   return (
-    <section id="about" className="scroll-mt-24 py-16 lg:py-20">
+    <section id="about" className="py-16 lg:py-20">
       <Container>
         {/* items-start, not items-center: the text column is much taller, so
             centring dropped the photo well below the section heading. */}
@@ -28,7 +28,7 @@ export function About() {
               height={1024}
               loading="lazy"
               decoding="async"
-              className="w-full rounded-[3rem_0.25rem_3rem_0.25rem] shadow-lg shadow-plum/10 sm:rounded-[4rem_0.25rem_4rem_0.25rem]"
+              className="portrait-shadow w-full rounded-[3rem_0.25rem_3rem_0.25rem] sm:rounded-[4rem_0.25rem_4rem_0.25rem]"
             />
 
             {/* Circular years badge, carried over from the reference — with
@@ -39,7 +39,7 @@ export function About() {
                 <p className="font-display text-3xl leading-none font-semibold text-gradient">
                   {profile.yearsExperience}+
                 </p>
-                <p className="mt-1.5 font-mono text-[0.55rem] leading-tight tracking-[0.12em] text-ink-soft uppercase">
+                <p className="mt-1.5 font-mono text-[0.54rem] leading-tight font-semibold tracking-[0.08em] text-ink uppercase">
                   Years
                   <br />
                   Building
@@ -56,31 +56,41 @@ export function About() {
               </p>
 
               <h2 className="mt-4 text-headline font-semibold text-ink">
-                {about.heading.lead} <em className="text-gradient">{about.heading.accent}</em>
+                {about.heading.lead}{" "}
+                <em className="text-gradient">{about.heading.accent}</em>
               </h2>
             </Reveal>
 
             {about.paragraphs.map((paragraph, index) => (
               <Reveal key={index} delay={0.08 * (index + 1)}>
-                <p className="mt-5 leading-relaxed text-ink-soft">{paragraph}</p>
+                <p className="copy mt-5 text-ink-soft">{paragraph}</p>
               </Reveal>
             ))}
 
             <Reveal delay={0.24}>
               <ul className="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2">
                 {about.traits.map((trait) => {
-                  const Icon = icons[trait.icon]
+                  const Icon = icons[trait.icon];
                   return (
-                    <li key={trait.label} className="border-t border-petal pt-4">
-                      {Icon && <Icon size={20} aria-hidden="true" className="text-rose" />}
-                      <p className="mt-3 font-mono text-[0.68rem] tracking-[0.14em] text-ink uppercase">
+                    <li
+                      key={trait.label}
+                      className="border-t border-petal pt-4"
+                    >
+                      {Icon && (
+                        <Icon
+                          size={20}
+                          aria-hidden="true"
+                          className="text-rose"
+                        />
+                      )}
+                      <p className="mt-3 font-mono text-[0.62rem] font-bold tracking-widest text-ink uppercase">
                         {trait.label}
                       </p>
-                      <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                      <p className="copy-sm mt-2 text-ink-soft">
                         {trait.description}
                       </p>
                     </li>
-                  )
+                  );
                 })}
               </ul>
             </Reveal>
@@ -88,7 +98,7 @@ export function About() {
             <Reveal delay={0.32}>
               <a
                 href="#experience"
-                className="mt-10 inline-flex items-center gap-2 rounded-full border border-petal px-6 py-3 font-mono text-[0.68rem] tracking-[0.14em] text-ink uppercase transition-colors hover:border-rose hover:text-rose-deep"
+                className="mt-10 inline-flex items-center gap-2 rounded-full border border-petal px-6 py-3 font-mono text-[0.62rem] font-semibold tracking-widest text-ink uppercase transition-colors hover:border-rose hover:text-rose-deep"
               >
                 See My Experience
                 <ArrowRight size={15} aria-hidden="true" />
@@ -98,5 +108,5 @@ export function About() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

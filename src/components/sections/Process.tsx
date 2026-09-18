@@ -26,15 +26,16 @@ export function Process() {
                 />
               )}
 
-              {/* No opacity here: gold is 3.84:1 on blush, which clears the
-                  3:1 bar for large text — but only at full strength. */}
-              <span className="font-display text-4xl font-semibold text-gold">
+              {/* gold-deep, not gold. Plain gold is 3.56:1 on blush, which
+                  technically clears the 3:1 large-text bar but reads as a
+                  watermark rather than as a step number. */}
+              <span className="font-display text-4xl font-semibold text-gold-deep">
                 {step.number}
               </span>
 
               <h3 className="mt-4 font-display text-xl font-semibold text-ink">{step.title}</h3>
 
-              <p className="mt-3 text-sm leading-relaxed text-ink-soft">{step.description}</p>
+              <p className="copy-sm mt-3 text-ink-soft">{step.description}</p>
             </Reveal>
           ))}
         </ol>
