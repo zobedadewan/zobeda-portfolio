@@ -3,6 +3,11 @@
   "name": "portfolio",
   "compatibility_date": "2026-09-18",
 
+  // Serve on <name>.<account-subdomain>.workers.dev. A Worker created by a
+  // rename does not necessarily inherit the previous one's route, and the
+  // new name 404'd until this was set explicitly.
+  "workers_dev": true,
+
   // A static-assets-only Worker: no server code, so no "main" entry point.
   // Cloudflare serves ./dist straight from its edge.
   //
