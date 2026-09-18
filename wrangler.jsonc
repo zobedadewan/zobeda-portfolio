@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zobeda",
+  "compatibility_date": "2026-09-18",
+
+  // A static-assets-only Worker: no server code, so no "main" entry point.
+  // Cloudflare serves ./dist straight from its edge.
+  //
+  // Committing this matters even though wrangler will scaffold one if it is
+  // missing: the generated config is rebuilt on every deploy and is not
+  // under version control, so the deployed Worker's name and settings would
+  // be decided by the dashboard rather than by this repo.
+  "assets": {
+    "directory": "./dist",
+
+    // SPA fallback. The site is client-routed, so a direct visit or refresh
+    // on /work/<slug> asks the edge for a file that does not exist; without
+    // this it 404s instead of handing over to index.html.
+    //
+    // Do NOT also add a public/_redirects with a catch-all rule. Workers
+    // parses _redirects too and rejects `/* /index.html 200` as a
+    // self-referencing loop:
+    //   Invalid _redirects configuration: Infinite loop detected [100324]
+    // which fails the deploy after a clean build. That mistake has now cost
+    // three failed deploys. _redirects is the Pages/Netlify mechanism; this
+    // setting is the Workers one. Use exactly one.
+    "not_found_handling": "single-page-application"
+  }
+}
