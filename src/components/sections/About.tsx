@@ -9,15 +9,49 @@ export function About() {
   return (
     <section id="about" className="py-16 lg:py-20">
       <Container>
-        {/* items-start, not items-center: the text column is much taller, so
-            centring dropped the photo well below the section heading. */}
-        <div className="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
-          {/* 50px drops the photo's top edge to the heading's cap height:
-              18px eyebrow line box + 16px mt-4 to the h2's line box, then
-              16px more of leading and ascent to the top of the "I" itself.
-              Optical alignment with the letterform, not the text box. Only
-              on lg — below that the photo stacks above the text. */}
-          <Reveal className="relative mx-auto w-full max-w-xl lg:mx-0 lg:mt-12.5">
+        {/* Three children, placed differently per breakpoint.
+
+            On lg the photo occupies the whole left column and the two text
+            blocks stack in the right one — the original two-column layout.
+
+            Below lg the grid collapses to one column and `order` interleaves
+            them: heading and paragraphs, then the photo, then the traits. The
+            photo used to lead on mobile, which pushed the section's opening
+            sentence below the fold; this way the text introduces itself and
+            the photo arrives as a break before the traits list.
+
+            Splitting the text into two blocks is what makes that possible —
+            `order` can only reposition whole grid items, so the photo cannot
+            be moved into the middle of a single text column. */}
+        <div className="grid items-start gap-x-20 gap-y-14 lg:grid-cols-2 lg:gap-y-0">
+          {/* Heading and paragraphs */}
+          <div className="order-1 lg:order-0 lg:col-start-2 lg:row-start-1">
+            <Reveal>
+              <p className="eyebrow flex items-center gap-2.5">
+                <span aria-hidden="true" className="h-px w-8 bg-gold" />
+                About Me
+              </p>
+
+              <h2 className="mt-4 text-headline font-semibold text-ink">
+                {about.heading.lead}{" "}
+                <em className="text-gradient">{about.heading.accent}</em>
+              </h2>
+            </Reveal>
+
+            {about.paragraphs.map((paragraph, index) => (
+              <Reveal key={index} delay={0.08 * (index + 1)}>
+                <p className="copy mt-5 text-ink-soft">{paragraph}</p>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Photo. On lg it spans both text rows in the left column; on
+              mobile it sits between them. lg:mt-12.5 drops its top edge to
+              the heading's cap height — 18px eyebrow line box, 16px mt-4 to
+              the h2's line box, then 16px of leading and ascent to the top of
+              the "I" itself. Optical alignment with the letterform, not the
+              text box, and only worth doing where the two sit side by side. */}
+          <Reveal className="relative order-2 mx-auto w-full max-w-xl lg:order-0 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:mx-0 lg:mt-12.5">
             {/* Shown at its native 3:2 rather than cropped to a portrait
                 slot — the monitors and desk are the point of the shot.
                 Leaf corners match the hero portrait. */}
@@ -48,40 +82,16 @@ export function About() {
             </div>
           </Reveal>
 
-          <div>
-            <Reveal>
-              <p className="eyebrow flex items-center gap-2.5">
-                <span aria-hidden="true" className="h-px w-8 bg-gold" />
-                About Me
-              </p>
-
-              <h2 className="mt-4 text-headline font-semibold text-ink">
-                {about.heading.lead}{" "}
-                <em className="text-gradient">{about.heading.accent}</em>
-              </h2>
-            </Reveal>
-
-            {about.paragraphs.map((paragraph, index) => (
-              <Reveal key={index} delay={0.08 * (index + 1)}>
-                <p className="copy mt-5 text-ink-soft">{paragraph}</p>
-              </Reveal>
-            ))}
-
+          {/* Traits and the link through to Experience */}
+          <div className="order-3 lg:order-0 lg:col-start-2 lg:row-start-2">
             <Reveal delay={0.24}>
-              <ul className="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2">
+              <ul className="grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:mt-10">
                 {about.traits.map((trait) => {
                   const Icon = icons[trait.icon];
                   return (
-                    <li
-                      key={trait.label}
-                      className="border-t border-petal pt-4"
-                    >
+                    <li key={trait.label} className="border-t border-petal pt-4">
                       {Icon && (
-                        <Icon
-                          size={20}
-                          aria-hidden="true"
-                          className="text-rose"
-                        />
+                        <Icon size={20} aria-hidden="true" className="text-rose" />
                       )}
                       <p className="mt-3 font-mono text-[0.62rem] font-bold tracking-widest text-ink uppercase">
                         {trait.label}
