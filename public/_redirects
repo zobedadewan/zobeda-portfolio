@@ -1,0 +1,9 @@
+# SPA fallback. The site is client-routed, so a direct visit or refresh on
+# /work/<slug> asks the edge for a file that does not exist; without this it
+# 404s instead of handing over to index.html for React Router to resolve.
+#
+# This is the documented Pages pattern. It is NOT valid on Workers Static
+# Assets, which rejects the catch-all as a self-referencing loop (code
+# 100324) and fails the deploy — that is why this file was removed earlier,
+# when the project was briefly deployed as a Worker.
+/*    /index.html   200
