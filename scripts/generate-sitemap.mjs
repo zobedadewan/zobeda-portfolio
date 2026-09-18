@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
 // Keep in sync with the canonical URL in index.html.
-const SITE = process.env.SITE_URL ?? 'https://zobeda.dewan-zobeda.workers.dev'
+const SITE = process.env.SITE_URL ?? 'https://portfolio.dewan-zobeda.workers.dev'
 
 const source = readFileSync(resolve(root, 'src/data/projects.ts'), 'utf8')
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zobeda.dewan-zobeda.workers.dev/sitemap.xml
+Sitemap: https://portfolio.dewan-zobeda.workers.dev/sitemap.xml

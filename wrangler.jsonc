@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "zobeda",
+  "name": "portfolio",
   "compatibility_date": "2026-09-18",
 
   // A static-assets-only Worker: no server code, so no "main" entry point.
