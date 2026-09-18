@@ -13,9 +13,12 @@
     // not exist; without this it returns 404 instead of handing over to
     // index.html and letting React Router resolve the path.
     //
-    // It replaces what public/_redirects does on Pages. That file is kept
-    // so the project can still deploy to Pages or Netlify unchanged, but
-    // on Workers this setting is what actually takes effect.
+    // Do NOT also ship a public/_redirects with a catch-all SPA rule.
+    // Workers Static Assets parses _redirects too, and rejects
+    // `/* /index.html 200` as a self-referencing loop:
+    //   "Infinite loop detected in this rule" [code: 100324]
+    // which fails the deploy outright. This setting is the Workers way to
+    // do it; _redirects is the Pages/Netlify way. Pick one.
     "not_found_handling": "single-page-application"
   }
 }
