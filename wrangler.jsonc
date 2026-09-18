@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zobeda-portfolio",
+  "compatibility_date": "2026-09-18",
+
+  // A static-assets-only Worker: there is no server code, so no "main"
+  // entry point. Cloudflare serves ./dist straight from its edge.
+  "assets": {
+    "directory": "./dist",
+
+    // This is the SPA fallback. The site is client-routed, so a direct hit
+    // or refresh on /work/vanity-linx asks the edge for a file that does
+    // not exist; without this it returns 404 instead of handing over to
+    // index.html and letting React Router resolve the path.
+    //
+    // It replaces what public/_redirects does on Pages. That file is kept
+    // so the project can still deploy to Pages or Netlify unchanged, but
+    // on Workers this setting is what actually takes effect.
+    "not_found_handling": "single-page-application"
+  }
+}
