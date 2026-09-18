@@ -1,11 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "portfolio",
+  "name": "zobeda",
   "compatibility_date": "2026-09-18",
 
-  // Serve on <name>.<account-subdomain>.workers.dev. A Worker created by a
-  // rename does not necessarily inherit the previous one's route, and the
-  // new name 404'd until this was set explicitly.
+  // Serve on <name>.<account-subdomain>.workers.dev.
+  //
+  // NOTE: "name" here does not control the deployed Worker. Workers Builds
+  // deploys to the Worker its project is bound to, so renaming this field
+  // changed nothing — builds kept succeeding against "zobeda" while the new
+  // name never existed. Renaming means recreating the Cloudflare project.
   "workers_dev": true,
 
   // A static-assets-only Worker: no server code, so no "main" entry point.
