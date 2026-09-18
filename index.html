@@ -38,6 +38,18 @@
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Add to Home Screen.
+         Android/Chrome reads the manifest; iOS Safari ignores it for icons
+         and uses apple-touch-icon, which must be a plain square PNG — iOS
+         applies its own rounding, and a pre-rounded source shows dark
+         corners behind it. -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Zobeda" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
